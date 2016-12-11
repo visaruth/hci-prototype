@@ -14,11 +14,17 @@ and open the template in the editor.
         <link rel="stylesheet" href="asset/css/bootstrap-theme.min.css">
         <script src="asset/js/jquery-3.1.1.min.js"></script>
         <script src="asset/js/bootstrap.min.js"></script>
+        <script src="asset/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="asset/sweetalert.css">
         <style>
             @media screen and (orientation: portrait) {
                 #img-logo {
                     position: absolute;
                     z-index: 2;
+                }
+                #space{
+                    background-color: #fee5ae;
+                    height: 100px;
                 }
             }
 
@@ -27,6 +33,10 @@ and open the template in the editor.
                     position: absolute;
                     z-index: 2;
                     left: 40%;
+                }
+                #space{
+                    background-color: #fee5ae;
+                    height: 100px;
                 }
             }
             body {
@@ -88,12 +98,31 @@ and open the template in the editor.
                     </div>
                     <div class="form-group"> 
                         <div class="col-sm-12">
-                            <button id="login" type="submit" >ลงชื่อเข้าใช้</button>
+                            <button id="login" type="submit" onclick="check()">ลงชื่อเข้าใช้</button>
                         </div>
                     </div>
                 </form>
+
             </div>
+            <div class="row" id="space"></div>
         </div>
 
     </body>
+    <script>
+        function check() {
+            var user = document.getElementById('userID').value;
+             var pass = document.getElementById('pwdID').value;
+             if (user == "admin" && pass == "admin") {
+                 window.location = "main_teacher.html";
+             } else if (user == "admin" && pass == "admin") {
+                 window.location = "main_student.html";
+             } else if(user == "" && pass == ""){
+                 swal("ผิดพลาด", "กรุณากรอกชื่อผู้ใช้หรือรหัสผ่านด้วย", "error");
+             }else {
+                 swal("ผิดพลาด", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง", "error");
+             }
+            
+            event.preventDefault();
+        }
+    </script>
 </html>
