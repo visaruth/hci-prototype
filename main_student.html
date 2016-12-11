@@ -44,11 +44,32 @@ and open the template in the editor.
                 top: 20px;
                 z-index: 1;
             }
-            
+
             img.displayed {
                 display: block;
                 margin-left: auto;
                 margin-right: auto }
+            #login {
+                background-color: #ffbe61;
+                border: none;
+                color: black;
+                padding: 5px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                border: 2px dashed black;
+                border-radius: 10px;
+            }
+            #login:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            .iBannerFix{  
+                height:50px;  
+                position: static;  
+                width:100%;  
+                z-index: 99;  
+            } 
             #icon_bar {
                 width: 250px;
                 height: 220px;
@@ -65,40 +86,56 @@ and open the template in the editor.
             #icon_bar:hover {
                 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
             }
-
-            h6 {
-                font-size: 16px;
+            a{
+                color: black;
             }
-
+            a:hover{
+                text-decoration: none;
+                cursor: pointer
+            }
+            .col-sm-12 a{
+                color:gray
+            }
+            .col-sm-12 a:hover{
+                text-decoration: underline
+            }
         </style>
     </head>
     <body>
         <div class="col-sm-12"><center><img id="img-logo" class="displayed"  src="img/logo.png"></center></div>
         <div id="bar" class="col-xs-12" style="padding: 20px 20px"></div>
         <div class="container">
-            <div class="jumbotron" id="main">
+            <div class="row" id="main">
+                <div class="col-sm-12" style="text-align: right;"><a>[ออกจากระบบ]</a></div>
+                <div class="col-xs-12"><br><br></div>
+                <div class="col-sm-12" style="text-align: right;">[ชื่อผู้ใช้]</div>
+                <br>
+            </div>
+            
+            <div class="row" id="main">
+                <br>
+                
                 <div id="main_logo">
-                    <br><br>
                     <img src="img/teacher_icon.png" style="margin-bottom: -1.3cm">
-                    <h3>นักศึกษา<h3>
+                    <h3 style="cursor:default">นักศึกษา<h3>
                 </div>
-                <div id="main_content" style="margin-top:1cm;padding-left:6.5%">
+                <div id="main_content" align="center" style="margin-top:1cm;margin-bottom:1.3cm">
                     <div class="row" >
-                        <div class="col-md-3" id="icon_bar">
+                        <div id="icon_bar">
                             <a href="#">
                                 <img src="img/exam.png" class="img-responsive" alt="Responsive image" style="width 200px; height:150px;
                 padding: 8.33% 0 8.33% 15%;">
                             </a>
                             <h6>ทำข้อสอบ</h6>
                         </div>
-                        <div class="col-md-3 col-md-offset-1" id="icon_bar">
+                        <div class="col-md-offset-1" id="icon_bar">
                             <a href="#">
                                 <img src="img/stat.png" class="img-responsive" alt="Responsive image" style="width 200px; height:150px;
                 padding: 8.33% 0 8.33% 5%;">
                             </a>
                             <h6>ดูเฉลยข้อสอบ</h6>
                         </div>
-                        <div class="col-md-3 col-md-offset-1" id="icon_bar">
+                        <div class="col-md-offset-1" id="icon_bar">
                             <a href="#">
                                 <img src="img/scoreboard.png" class="img-responsive" alt="Responsive image" style="width 200px; height:150px;
                 padding: 8.33% 0 8.33% 23%;">
@@ -107,7 +144,8 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-            </div><!-- div jumbotron -->
-        </div><!-- div container -->
+                
+            </div>
+        </div>
     </body>
 </html>
