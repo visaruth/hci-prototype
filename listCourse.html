@@ -75,6 +75,9 @@ and open the template in the editor.
                 text-align: left;
                 padding-left:10%;
                 text-decoration: underline;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;    
             }
             .ableft:after {
                 content:"\000A";
@@ -85,6 +88,7 @@ and open the template in the editor.
             }
             a:hover{
                 text-decoration: none;
+                cursor: pointer
             }
             .col-sm-12 a{
                 color:gray
@@ -107,10 +111,10 @@ and open the template in the editor.
             <div class="row" id="tab" style="background-color: #ffbe62; text-align: left;">
                
                 <div>
-                    <h4 class="col-md-8">หน้าหลัก > หน้าจัดการข้อสอบ > [รายวิชา]</h4>
+                    <h4 class="col-md-8 col-sm-12 col-xs-12">หน้าหลัก > หน้าจัดการข้อสอบ > [รายวิชา]</h4>
                     <form class="form-horizontal"  autocomplete="off">
                         <div class="form-group" >    
-                            <div class="col-md-4 col-sm-12" style="float:right;margin-top:5px">
+                            <div class="col-md-4 col-sm-12 col-xs-12" style="margin-top:5px">
                                 <input type="text" placeholder="ค้นหารายวิชา" class="form-control" id="searchKeyword" >
                                 <span class="glyphicon glyphicon-search form-control-feedback" style="padding-right:17px"></span>
                             </div>
@@ -130,7 +134,7 @@ and open the template in the editor.
                     </div>
                 </form> 
                 
-                <h4><a class="ableft" href="#">CS101 Decrete Structures</a></h4>
+                <h4><a class="ableft" href="#">CS101 Discrete Structures</a></h4>
                 <h4><a class="ableft"  href="#">CS102 Computer Programming Fundamentals</a></h4>
                 <h4><a class="ableft"  href="#">CS105 Practicum for Structural Programming</a></h4>
                 
