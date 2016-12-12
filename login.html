@@ -116,7 +116,7 @@ and open the template in the editor.
                  window.location = "main_teacher.html";
              } else if (user == "student" && pass == "student") {
                  window.location = "main_student.html";
-             } else if(user == "" && pass == ""){
+             } else if(user == "" || pass == ""){
                  swal("ผิดพลาด", "กรุณากรอกชื่อผู้ใช้หรือรหัสผ่านด้วย", "error");
              }else {
                  swal("ผิดพลาด", "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง", "error");

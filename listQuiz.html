@@ -14,11 +14,16 @@ and open the template in the editor.
         <link rel="stylesheet" href="asset/css/bootstrap-theme.min.css">
         <script src="asset/js/jquery-3.1.1.min.js"></script>
         <script src="asset/js/bootstrap.min.js"></script>
+        <script src="asset/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="asset/sweetalert.css">
         <style>
             @media screen and (orientation: portrait) {
                 #img-logo {
                     position: absolute;
                     z-index: 2;
+                }
+                #mainq{
+                    border: 10px solid #fee5ae;
                 }
             }
 
@@ -49,17 +54,22 @@ and open the template in the editor.
                 display: block;
                 margin-left: auto;
                 margin-right: auto }
-            #login {
-                background-color: #ffbe61;
+            #newq {
+                background-color: white;
                 border: none;
                 color: black;
-                padding: 5px 20px;
                 text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
                 border: 2px dashed black;
-                border-radius: 10px;
+            }
+            #newq:hover{
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            #mainq{
+                background-color: white; 
+                text-align: left;
+            }
+            #mainq:hover{
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
             }
             #login:hover {
                 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
@@ -69,13 +79,18 @@ and open the template in the editor.
                 position: static;  
                 width:100%;  
                 z-index: 99;  
-            }  
+            }  #space{
+                background-color: #fee5ae;
+                z-index: 0;
+                height: 20px;
+            }
         </style>
     </head>
     <body>
         <div class="col-sm-12"><center><img id="img-logo" class="displayed"  src="img/logo.png"></center></div>
         <div id="bar" class="col-xs-12" style="padding: 20px 20px"></div>
         <div class="container">
+
             <div class="row" id="main">
                 <div class="col-sm-12"  style="text-align: right;"><a href="#">[ออกจากระบบ]</a></div>
                 <div class="col-xs-12"><br><br></div>
@@ -83,30 +98,141 @@ and open the template in the editor.
                 <br>
             </div>
             <div class="row" id="tab" style="background-color: #ffbe62; text-align: left;">
-               
+
                 <div class="col-ls-12">
-                    <h4><a href="main_teacher.html">หน้าหลัก</a> > <a href="#">หน้าจัดการข้อสอบ</a> > [รายวิชา]</h4>
+                    <h4 class="col-md-8 col-sm-12 col-xs-12"><a href="main_teacher.html">หน้าหลัก</a> > <a href="#">หน้าจัดการข้อสอบ</a> > [รายวิชา] > รายชื่อข้อสอบ</h4>
+                    <form class="form-horizontal"  autocomplete="off">
+                        <div class="form-group" >    
+                            <div class="col-md-4 col-sm-12 col-xs-12" style="margin-top:5px">
+                                <input type="text" placeholder="ค้นหารายวิชา" class="form-control" id="searchKeyword" >
+                                <span class="glyphicon glyphicon-search form-control-feedback" style="padding-right:17px"></span>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+            <div class="row" id="space"></div>
+            <div class="row" id="main" >
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <div class="form-group has-feedback " >
+                        <input type="text" class="form-control" placeholder="ค้นหาข้อสอบ" />
+                        <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="space"></div>
             <div class="row" id="main">
-                <br>
                 <div class="col-lg-2"></div>
-                <div class="col-lg-8" style="background-color: white; text-align: left;">
-                    <h1>สอบครั้งที่ 1</h1>
-                    <div style="text-align: right;">aaaaa</div>
+                <div class="col-lg-8" onclick="newq()" id="newq">
+                    <kkk style="font-size: 25px;"><img src="img/icon/add.png" style="width:20px;height:20px;"> เพิ่มข้อสอบ</kkk>
                 </div>
             </div>
-            <div class="row" id="main"></div>
+            <div class="row" id="space"></div>
             <div class="row" id="main">
-                <br>
                 <div class="col-lg-2"></div>
-                <div class="col-lg-8" style="background-color: white; text-align: left;">
-                    <h1>สอบครั้งที่ 2</h1>
-                    <div style="text-align: right;">aaaaa</div>
+                <div class="col-lg-8" id="mainq">
+                    <h1><a href="#">สอบครั้งที่ 1</a></h1>
+                    <p>เรื่อง : Array</p>
+                    <p>จำนวนข้อ : 45 ข้อ</p>
+                    <p>ประเภท : ปรนัย</p>
+                    <p>เวลา : 45 นาที</p>
+                    <p>เริ่มสอบวันที่ : 30 มกราคม 2558</p>
+                    <p>สินสุดวันที่ : 14 กุมภาพันธ์ 2558</p>
+                    <p>จำนวนคนทำ : 39 คน</p>
+                    <div style="text-align: right; height: 30px;">
+                        <img src="img/icon/delete.png" style="width:20px;height:20px;" data-toggle="tooltip" title="delete" onclick="deleteq('สอบครั้งที่ 1')">
+                        
+                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit">
+                    </div>
                 </div>
             </div>
-            <div class="row" id="main"></div>
+            <div class="row" id="space"></div>
+            <div class="row" id="main">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8" id="mainq">
+                    <h1 ><a href="#">สอบครั้งที่ 2</a></h1>
+                    <p>เรื่อง : Array</p>
+                    <p>จำนวนข้อ : 45 ข้อ</p>
+                    <p>ประเภท : ปรนัย</p>
+                    <p>เวลา : 45 นาที</p>
+                    <p>เริ่มสอบวันที่ : 30 มกราคม 2558</p>
+                    <p>สินสุดวันที่ : 14 กุมภาพันธ์ 2558</p>
+                    <p>จำนวนคนทำ : 39 คน</p>
+                    <div style="text-align: right; height: 30px;">
+                        <img src="img/icon/delete.png" style="width:20px;height:20px;" data-toggle="tooltip" title="delete" onclick="deleteq('สอบครั้งที่ 2')">
+                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit">
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="space"></div>
+            <div class="row" id="main">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8" id="mainq">
+                    <h1 ><a href="#">สอบครั้งที่ 3</a></h1>
+                    <p>เรื่อง : Array</p>
+                    <p>จำนวนข้อ : 45 ข้อ</p>
+                    <p>ประเภท : ปรนัย</p>
+                    <p>เวลา : 45 นาที</p>
+                    <p>เริ่มสอบวันที่ : 30 มกราคม 2558</p>
+                    <p>สินสุดวันที่ : 14 กุมภาพันธ์ 2558</p>
+                    <p>จำนวนคนทำ : 39 คน</p>
+                    <div style="text-align: right; height: 30px;">
+                        <img src="img/icon/delete.png" style="width:20px;height:20px;" data-toggle="tooltip" title="delete" onclick="deleteq('สอบครั้งที่ 3')">
+                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit">
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="space"></div>
+            <div class="row" id="main">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8" id="mainq">
+                    <h1 ><a href="#">สอบครั้งที่ 4</a></h1>
+                    <p>เรื่อง : Array</p>
+                    <p>จำนวนข้อ : 45 ข้อ</p>
+                    <p>ประเภท : ปรนัย</p>
+                    <p>เวลา : 45 นาที</p>
+                    <p>เริ่มสอบวันที่ : 30 มกราคม 2558</p>
+                    <p>สินสุดวันที่ : 14 กุมภาพันธ์ 2558</p>
+                    <p>จำนวนคนทำ : 39 คน</p>
+                    <div style="text-align: right; height: 30px;">
+                        <img src="img/icon/delete.png" style="width:20px;height:20px;" data-toggle="tooltip" title="delete" onclick="deleteq('สอบครั้งที่ 4')">
+                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit">
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="space" style="height: 50px;"></div>
+            <div class="row" id="space">
+                <ul class="pagination">
+                    <li class="active"><a >1</a></li>
+                </ul>
+            </div>
+            <div class="row" id="space" style="height: 50px;"></div>
         </div>
 
     </body>
+    <script>
+        function newq() {
+
+        }
+        function deleteq(a) {
+            swal({
+                title: "คุณต้องการลบ?",
+                text: a,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                closeOnConfirm: false
+            },
+                    function () {
+                        swal("Deleted!", "ข้อสอบ " + a + " ได้ถูกลบเรียบร้อย", "success");
+                    });
+            event.preventDefault();
+        }
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 </html>
