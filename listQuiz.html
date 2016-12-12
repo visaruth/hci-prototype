@@ -143,8 +143,8 @@ and open the template in the editor.
                     <p>จำนวนคนทำ : 39 คน</p>
                     <div style="text-align: right; height: 30px;">
                         <img src="img/icon/delete.png" style="width:20px;height:20px;" data-toggle="tooltip" title="delete" onclick="deleteq('สอบครั้งที่ 1')">
-                        
-                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit">
+
+                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit" onclick="editq('สอบครั้งที่ 1')">
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@ and open the template in the editor.
                     <p>จำนวนคนทำ : 39 คน</p>
                     <div style="text-align: right; height: 30px;">
                         <img src="img/icon/delete.png" style="width:20px;height:20px;" data-toggle="tooltip" title="delete" onclick="deleteq('สอบครั้งที่ 2')">
-                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit">
+                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit" onclick="editq('สอบครั้งที่ 2')">
                     </div>
                 </div>
             </div>
@@ -180,7 +180,7 @@ and open the template in the editor.
                     <p>จำนวนคนทำ : 39 คน</p>
                     <div style="text-align: right; height: 30px;">
                         <img src="img/icon/delete.png" style="width:20px;height:20px;" data-toggle="tooltip" title="delete" onclick="deleteq('สอบครั้งที่ 3')">
-                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit">
+                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit" onclick="editq('สอบครั้งที่ 3')">
                     </div>
                 </div>
             </div>
@@ -195,10 +195,10 @@ and open the template in the editor.
                     <p>เวลา : 45 นาที</p>
                     <p>เริ่มสอบวันที่ : 30 มกราคม 2558</p>
                     <p>สินสุดวันที่ : 14 กุมภาพันธ์ 2558</p>
-                    <p>จำนวนคนทำ : 39 คน</p>
+                    <p>ยังไม่มีผู้ทำข้อสอบ</p>
                     <div style="text-align: right; height: 30px;">
                         <img src="img/icon/delete.png" style="width:20px;height:20px;" data-toggle="tooltip" title="delete" onclick="deleteq('สอบครั้งที่ 4')">
-                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit">
+                        <img src="img/icon/edit1.png" style="width:20px;height:20px;" data-toggle="tooltip" title="edit" onclick="editq('สอบครั้งที่ 4')">
                     </div>
                 </div>
             </div>
@@ -216,19 +216,29 @@ and open the template in the editor.
         function newq() {
 
         }
+        function editq(a) {
+            if (a == ("สอบครั้งที่ 1") || a == ("สอบครั้งที่ 2") || a == ("สอบครั้งที่ 3")) {
+                swal("ผิดพลาด", "ไมสามารถแก้ไข " + a + " ได้เนื่องจากมีผู้ทำข้อสอบแล้ว", "error");
+            }else{
+                window.location = "#";
+            }
+        }
         function deleteq(a) {
-            swal({
-                title: "คุณต้องการลบ?",
-                text: a,
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes",
-                closeOnConfirm: false
-            },
-                    function () {
-                        swal("Deleted!", "ข้อสอบ " + a + " ได้ถูกลบเรียบร้อย", "success");
-                    });
+            if (a == ("สอบครั้งที่ 1") || a == ("สอบครั้งที่ 2") || a == ("สอบครั้งที่ 3")) {
+                swal("ผิดพลาด", "ไมสามารถลบ " + a + " ได้เนื่องจากมีผู้ทำข้อสอบแล้ว", "error");
+            } else
+                swal({
+                    title: "คุณต้องการลบ?",
+                    text: a,
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    closeOnConfirm: false
+                },
+                        function () {
+                            swal("Deleted!", "ข้อสอบ " + a + " ได้ถูกลบเรียบร้อย", "success");
+                        });
             event.preventDefault();
         }
         $(document).ready(function () {

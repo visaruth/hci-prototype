@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>QuizCat</title>
+        <link rel="shortcut icon" href="img/lo.png" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="asset/css/bootstrap.min.css">
+        <link rel="stylesheet" href="asset/css/bootstrap-theme.min.css">
+        <script src="asset/js/jquery-3.1.1.min.js"></script>
+        <script src="asset/js/bootstrap.min.js"></script>
+        <script src="asset/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="asset/sweetalert.css">
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <style>
+            @media screen and (orientation: portrait) {
+                #img-logo {
+                    position: absolute;
+                    z-index: 2;
+                }
+                #mainq{
+                    border: 10px solid #fee5ae;
+                }
+            }
+
+            @media screen and (orientation: landscape) {
+                #img-logo {
+                    position: absolute;
+                    z-index: 2;
+                    left: 40%;
+                }
+            }
+            body {
+                text-align: center;
+                background-color: #fff2d6;
+                z-index: -1;
+            } 
+            #main {
+                background-color: #fee5ae;
+                z-index: 0;
+            }
+            #bar {
+                background-color: white;
+                position: absolute;
+                top: 20px;
+                z-index: 1;
+            }
+
+            img.displayed {
+                display: block;
+                margin-left: auto;
+                margin-right: auto }
+            #newq {
+                background-color: white;
+                border: none;
+                color: black;
+                text-align: center;
+                border: 2px dashed black;
+            }
+            #newq:hover{
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            #mainq{
+                background-color: white; 
+                text-align: left;
+            }
+            #mainq:hover{
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            #login:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            .iBannerFix{  
+                height:50px;  
+                position: static;  
+                width:100%;  
+                z-index: 99;  
+            }  #space{
+                background-color: #fee5ae;
+                z-index: 0;
+                height: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="col-sm-12"><center><img id="img-logo" class="displayed"  src="img/logo.png"></center></div>
+        <div id="bar" class="col-xs-12" style="padding: 20px 20px"></div>
+        <div class="container">
+
+            <div class="row" id="main">
+                <div class="col-sm-12"  style="text-align: right;"><a href="#">[ออกจากระบบ]</a></div>
+                <div class="col-xs-12"><br><br></div>
+                <div class="col-sm-12" style="text-align: right;"><a href="#">[ชื่อผู้ใช้]</a></div>
+                <br>
+            </div>
+            <div class="row" id="tab" style="background-color: #ffbe62; text-align: left;">
+
+                <div class="col-ls-12">
+                    <h4 class="col-md-8 col-sm-12 col-xs-12"><a href="main_teacher.html">หน้าหลัก</a> > <a href="#">หน้าจัดการข้อสอบ</a> > [รายวิชา] > รายชื่อข้อสอบ</h4>
+                    <form class="form-horizontal"  autocomplete="off">
+                        <div class="form-group" >    
+                            <div class="col-md-4 col-sm-12 col-xs-12" style="margin-top:5px">
+                                <input type="text" placeholder="ค้นหารายวิชา" class="form-control" id="searchKeyword" >
+                                <span class="glyphicon glyphicon-search form-control-feedback" style="padding-right:17px"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row" id="space"></div>
+            <div class="row" id="main" >
+                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+            </div>
+            
+            <div class="row" id="main" >
+                <div id="container2" style="min-width: 310px; height: 400px;  margin: 0 auto"></div>
+            </div>
+            <div class="row" id="space" style="height: 50px;"></div>
+        </div>
+    </body>
+    <script>
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    type: 'columnrange',
+                    inverted: true
+                },
+                title: {
+                    text: 'คะแนนรายวิชา CS101'
+                },
+                xAxis: {
+                    min: 0,
+                    categories: ['0-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80-89', '90-100']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'จำนวนคนที่ได้'
+                    }
+                },
+                series: [{
+                        name: 'คน',
+                        data: [
+                            [0, 5],
+                            [0, 7],
+                            [0, 2],
+                            [0, 5],
+                            [0, 13],
+                            [0, 7],
+                            [0, 16],
+                            [0, 10],
+                            [0, 2],
+                            [0, 1]
+                        ]
+                    }]
+
+            });
+        });
+        $(function () {
+
+            $(document).ready(function () {
+
+                // Build the chart
+                Highcharts.chart('container2', {
+                    colors: ['#ff0000', '#00ff00'],
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'คะแนนรายวิชา CS101 ของนายอู้อี้ อุอิอุอิ'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                            name: 'คะแนน',
+                            colorByPoint: true,
+                            data: [{
+                                    name: 'ทำได้',
+                                    y: 70
+                                }, {
+                                    name: 'ทำไม่ได้',
+                                    y: 30
+                                }]
+                        }]
+                });
+            });
+        });
+    </script>
+</html>
