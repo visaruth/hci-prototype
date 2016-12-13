@@ -19,6 +19,7 @@ and open the template in the editor.
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <link rel="stylesheet" href="asset/fonts/webfont2/stylesheet.css" type="text/css" charset="utf-8" />
         <style>
             @media screen and (orientation: portrait) {
                 #img-logo {
@@ -41,6 +42,7 @@ and open the template in the editor.
                 text-align: center;
                 background-color: #fff2d6;
                 z-index: -1;
+                font-family: 'thai_sans_literegular';
             } 
             #main {
                 background-color: #fee5ae;
@@ -129,7 +131,6 @@ and open the template in the editor.
             </div>
 
             <div class="row" id="main" style="background: white;" >
-                <div id="container2" style="min-width: 310px; height: 400px;  margin: 0 auto"></div>
                 <div class="col-lg-12" style="background-color: white">
                     <h4>ค่า Min 4 คะแนน</h4>
                     <h4>ค่า Avg 53 คะแนน</h4>
@@ -181,50 +182,6 @@ and open the template in the editor.
 
             });
         });
-        $(function () {
-
-            $(document).ready(function () {
-
-                // Build the chart
-                Highcharts.chart('container2', {
-                    colors: ['#ff0000', '#00ff00'],
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'คะแนนรายวิชา CS101 ของนายอู้อี้ อุอิอุอิ'
-                    }, subtitle: {
-                        text: 'การสอบครั้งที่ 1'
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: false
-                            },
-                            showInLegend: true
-                        }
-                    },
-                    series: [{
-                            name: 'คะแนน',
-                            colorByPoint: true,
-                            data: [{
-                                    name: 'ทำได้',
-                                    y: 70
-                                }, {
-                                    name: 'ทำไม่ได้',
-                                    y: 30
-                                }]
-                        }]
-                });
-            });
-        });
+        
     </script>
 </html>

@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title>QuizCat</title>
@@ -16,6 +11,7 @@ and open the template in the editor.
         <script src="asset/js/bootstrap.min.js"></script>
         <script src="asset/sweetalert.min.js"></script>
         <link rel="stylesheet" type="text/css" href="asset/sweetalert.css">
+        <link rel="stylesheet" href="asset/fonts/webfont2/stylesheet.css" type="text/css" charset="utf-8" />
         <style>
             @media screen and (orientation: portrait) {
                 #img-logo {
@@ -38,6 +34,7 @@ and open the template in the editor.
                 text-align: center;
                 background-color: #fff2d6;
                 z-index: -1;
+                font-family: 'thai_sans_literegular';
             } 
             #main {
                 background-color: #fee5ae;
@@ -125,8 +122,8 @@ and open the template in the editor.
             <div class="row" id="space"></div>
             <div class="row" id="main">
                 <div class="col-lg-2"></div>
-                <div class="col-lg-8" onclick="newq()" id="newq">
-                    <kkk style="font-size: 25px;"><img src="img/icon/add.png" style="width:20px;height:20px;"> เพิ่มข้อสอบ</kkk>
+                <div class="col-lg-8" onclick="newq()" id="newq" style="cursor: pointer;">
+                    <a style="font-size: 20px;"><img src="img/icon/add.png" style="width:25px;height:25px; "> เพิ่มข้อสอบ</a>
                 </div>
             </div>
             <div class="row" id="space"></div>
@@ -214,7 +211,7 @@ and open the template in the editor.
     </body>
     <script>
         function newq() {
-
+            window.location = 'makeq.html';
         }
         function editq(a) {
             if (a == ("สอบครั้งที่ 1") || a == ("สอบครั้งที่ 2") || a == ("สอบครั้งที่ 3")) {

@@ -1,16 +1,364 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>QuizCat</title>
+        <link rel="shortcut icon" href="img/lo.png" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="asset/css/bootstrap.min.css">
+        <link rel="stylesheet" href="asset/css/bootstrap-theme.min.css">
+        <script src="asset/js/jquery-3.1.1.min.js"></script>
+        <script src="asset/js/bootstrap.min.js"></script>
+        <script src="asset/sweetalert.min.js"></script>
+        <script src="asset/bootstrap-datetimepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="asset/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" type="text/css" href="asset/sweetalert.css">
+        <link rel="stylesheet" href="asset/fonts/webfont2/stylesheet.css" type="text/css" charset="utf-8" />
+
+        <style>
+            @font-face {
+                font-family: myFirstFont;
+                src: url(sansation_light.woff);
+            }
+            @media screen and (orientation: portrait) {
+                #img-logo {
+                    position: absolute;
+                    z-index: 2;
+                }
+                #mainq{
+                    border: 10px solid #fee5ae;
+                }
+            }
+
+            @media screen and (orientation: landscape) {
+                #img-logo {
+                    position: absolute;
+                    z-index: 2;
+                    left: 40%;
+                }
+                #aaaa{
+                    width: 525px;
+                }
+                #bbbb{
+                    width: 500px;
+                }
+            }
+            body {
+                text-align: center;
+                background-color: #fff2d6;
+                font-family: 'thai_sans_literegular';
+            } 
+            #main {
+                background-color: #fee5ae;
+                z-index: 0;
+
+            }
+            #bar {
+                background-color: white;
+                position: absolute;
+                top: 20px;
+                z-index: 1;
+            }
+
+            img.displayed {
+                display: block;
+                margin-left: auto;
+                margin-right: auto }
+            #newq {
+                background-color: white;
+                border: none;
+                color: black;
+                text-align: center;
+                border: 2px dashed black;
+                cursor: pointer;
+            }
+            #newq:hover{
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            #mainq{
+                background-color: white; 
+                text-align: left;
+            }
+            #mainq:hover{
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            #login:hover {
+                box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+            }
+            .iBannerFix{  
+                height:50px;  
+                position: static;  
+                width:100%;  
+                z-index: 99;  
+            }  #space{
+                background-color: #fee5ae;
+                z-index: 0;
+                height: 20px;
+            } 
+        </style>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="col-sm-12"><center><img id="img-logo" class="displayed"  src="img/logo.png"></center></div>
+        <div id="bar" class="col-xs-12" style="padding: 20px 20px"></div>
+        <div class="container">
+
+            <div class="row" id="main">
+                <div class="col-sm-12"  style="text-align: right;"><a href="#">[ออกจากระบบ]</a></div>
+                <div class="col-xs-12"><br><br></div>
+                <div class="col-sm-12" style="text-align: right;"><a href="#">[ชื่อผู้ใช้]</a></div>
+                <br>
+            </div>
+            <div class="row" id="tab" style="background-color: #ffbe62; text-align: left;">
+                <div class="col-ls-12">
+                    <h4 class="col-md-8 col-sm-12 col-xs-12"><a href="main_teacher.html">หน้าหลัก</a> > <a href="#">หน้าจัดการข้อสอบ</a> > [รายวิชา] > รายชื่อข้อสอบ</h4>
+                    <form class="form-horizontal"  autocomplete="off">
+                        <div class="form-group" >    
+                            <div class="col-md-4 col-sm-12 col-xs-12" style="margin-top:5px">
+                                <input type="text" placeholder="ค้นหารายวิชา" class="form-control" id="searchKeyword" >
+                                <span class="glyphicon glyphicon-search form-control-feedback" style="padding-right:17px"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row" id="space"></div>
+            <div class="row" id="main" >
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8 form-inline" id="aaa" style="background-color: white; border: 10px solid white; ">
+                    <label for="email">ชื่อข้อสอบ </label>
+                    <input type="text" class="form-control" id="t1"><br>
+                    <div class="col-lg-12" style="height: 10px; "></div>
+                    <label for="pwd">เริ่มสอบ  </label>
+                    <div class='input-group date' id='datetimepicker6' >
+                        <input type='text' class="form-control" placeholder="(ปี-เดือน-วัน ชั่วโมง:นาที)" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            <!--img  src="img/icon/selectDayTime.png" width="15" height="15"-->
+                        </span>
+                    </div>
+                    <label for="pwd"> ถึง </label>
+                    <div class='input-group date' id='datetimepicker7'>
+                        <input type='text' class="form-control" placeholder="(ปี-เดือน-วัน ชั่วโมง:นาที)"/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                    <br>
+                    <div class="col-lg-12" style="height: 10px; "></div>
+                    <label for="email">รายละเอียด </label>
+                    <input type="text" class="form-control" id="aaaa" placeholder="(เช่น การสอบอาเรย์, การสอบตรรกศาสตร์)"><br>
+                </div>
+            </div>
+            <div class="row" id="space" style="height: 10px;"></div>
+            <div id="quiz">
+                <div class="row" id="main" >
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8 form-inline" style="background-color: white; border: 10px solid white;">
+                        <label for="email" id="a1">ข้อ 1 :</label>
+                        <input type="text" class="form-control" id="bbbb" placeholder="(พิมพ์โจทย์ตรงนี้)">&nbsp;
+                        <img src="img/icon/add_image.png" style="height: 25px; width: 25px; cursor: pointer;" onclick="document.getElementById('imgInp1').click();"/> <br>
+                        <input type='file' id="imgInp1" style="display:none;" />
+                        <div class="col-lg-12" style="height: 10px; "></div>
+                        <center>
+                            <button class="btn btn-block" id="show" data-toggle="collapse" data-target="#blah1" style="display:none;">แสดงรูปภาพ</button>
+                            <img id="blah1" class="collapse" src="#" alt="your image" style="display:none;"/>
+                        </center>
+                        <div class="col-lg-12" style="height: 10px; "></div>
+                        <div id="test1">
+                            <div class="col-lg-12" >
+                                <div class="radio">
+                                    <input type="radio" name="optradio" >&nbsp;
+                                    <input type="text" id="aaaa" class="form-control" placeholder="(ใส่คำตอบ ถ้าข้อนี้เป็นคำตอบให้กดที่วงกลมด้านหน้า)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12" style="height: 10px; "></div>
+                        <div class="col-lg-12"> 
+                            <div class="col-lg-1"></div> <div class="col-lg-10" id="newq" onclick="addp('1')"> 
+                                <a style="font-size: 20px;"><img src="img/icon/add.png" style="width:25px;height:25px;"> เพิ่มตัวเลือก</a>
+                            </div>  
+                        </div>
+                        <div class="col-lg-12" style="height: 10px; "></div>
+                        <div class="col-lg-12">
+                            <label for="email" id="a1">เฉลย :</label>
+                            <input type="text" class="form-control" id="bbbb" placeholder="(พิมพ์รายละเอียดเฉลยตรงนี้)">&nbsp;
+                            <img src="img/icon/add_image.png" style="height: 25px; width: 25px; cursor: pointer;" onclick="document.getElementById('imgInp1b').click();"/>
+                        </div><br>
+                        <input type='file' id="imgInp1b" style="display:none;" />
+                        <div class="col-lg-12" style="height: 10px; "></div>
+                        <center>
+                            <button class="btn btn-block" id="showb" data-toggle="collapse" data-target="#blah1b" style="display:none;">แสดงรูปภาพ</button>
+                            <img id="blah1b" class="collapse" src="#" alt="your image" style="display:none;"/>
+                        </center>
+                        <div class="col-lg-12" style="height: 10px; " ></div>
+                        <label for="email" id="a1">คะแนน :</label>
+                        <input type="text" class="form-control" id="bbbb" placeholder="(ใส่ตัวเลขตรงนี้)">
+                    </div>
+                </div>
+                <div class="row" id="space" style="height: 10px;"></div>
+            </div>
+            <div class="row" id="space" style="height: 10px;"></div>
+            <div class="row" id="main" >
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8"  id="newq" onclick="addq(1)" style="cursor: pointer;">
+                    <a style="font-size: 20px;"><img src="img/icon/add.png"  style="width:25px;height:25px;"> เพิ่มโจทย์</a>
+                </div>
+            </div>
+            <div class="row" id="space" style="height: 10px;"></div>
+            <div class="row" id="main" >
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8"  id="newq" onclick="save()" style="cursor: pointer; background-color: #3b5998; border: 2px solid black; border-radius: 5px;">
+                    <a style="font-size: 20px; color: white;"><img src="img/icon/UploadingQuiz.png"  style="width:25px;height:25px ; filter: invert(100%);"> บันทึกข้อสอบ</a>
+                </div>
+            </div>
+            <div class="row" id="space" style="height: 10px;"></div>
+            <div class="row" id="main" >
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8"  id="newq" onclick="can()" style="cursor: pointer; background-color: #d34836; border: 2px solid black; border-radius: 5px;">
+                    <a style="font-size: 20px; color: white;">ยกเลิก</a>
+                </div>
+            </div>
+            <div class="row" id="space" style="height: 25px;"></div>
+
+            <script type="text/javascript">
+                var now = 1;
+                $(function () {
+                    $('#datetimepicker6').datetimepicker();
+                    $('#datetimepicker7').datetimepicker({
+                        useCurrent: false //Important! See issue #1075
+                    });
+                    $("#datetimepicker6").on("dp.change", function (e) {
+                        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+                    });
+                    $("#datetimepicker7").on("dp.change", function (e) {
+                        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+                    });
+                });
+                function addp(a) {
+                    document.getElementById("test" + a).innerHTML = document.getElementById("test" + a).innerHTML + (' <div class="col-lg-12" style="height: 10px; "></div> <div class="col-lg-12" ><div class="radio"><input type="radio" name="optradio" > <input type="text" id="aaaa" class="form-control" placeholder="(ใส่คำตอบ ถ้าข้อนี้เป็นคำตอบให้กดที่วงกลมด้านหน้า)"></div></div>');
+
+                }
+                function can() {
+                    swal({
+                        title: "คุณต้องการยกเลิก",
+                        text: "ข้อมูลทั้งหมดจะไม่ถูกเก็บบันทึก",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "ตกลง",
+                        cancelButtonText: "ไม่",
+                        closeOnConfirm: false,
+                    },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    window.location = 'listquiz.html';
+                                }
+                            });
+                }
+                function addq() {
+                    now++;
+                    document.getElementById("quiz").innerHTML = document.getElementById("quiz").innerHTML + '<div class="row" id="main" ><div class="col-lg-2"></div><div class="col-lg-8 form-inline" style="background-color: white; border: 10px solid white;"><label for="email" id="a1">ข้อ ' + now + ' :</label><input type="text" class="form-control" id="bbbb" placeholder="(พิมพ์โจทย์ตรงนี้)">&nbsp;'
+                            + '<img src = "img/icon/add_image.png" style = "height: 25px; width: 25px; cursor: pointer;" onclick = "document.getElementById("imgInp' + now + '").click();" / > <br>'
+                            + '<input type = "file" id = "imgInp1" style = "display:none;"/>'
+                            + '<div class = "col-lg-12" style = "height: 10px; "> </div>'
+                            + '<center>'
+                            + '<button class = "btn btn-block" id = "show" data - toggle = "collapse" data - target = "#blah' + now + '" style = "display:none;" > แสดงรูปภาพ </button>'
+                            + '<img id = "blah' + now + '" class = "collapse" src = "#" alt = "your image" style = "display:none;"/>'
+                            + '</center>'
+                            + '<div class = "col-lg-12" style = "height: 10px; " > </div>'
+                            + '<div id = "test' + now + '" >'
+                            + '<div class = "col-lg-12" >'
+                            + '<div class = "radio" >'
+                            + '<input type = "radio" name = "optradio" > '
+                            + '<input type = "text" id = "aaaa" class = "form-control" placeholder = "(ใส่คำตอบ ถ้าข้อนี้เป็นคำตอบให้กดที่วงกลมด้านหน้า)" >'
+                            + '</div>        </div>        </div>'
+                            + ' <div class = "col-lg-12" style = "height: 10px; " > </div>'
+                            + '<div class = "col-lg-12" >'
+                            + '<div class = "col-lg-1" > </div> <div class="col-lg-10" id="newq" onclick="addp(' + now + ')"> '
+                            + '<a style = "font-size: 20px;" > <img src = "img/icon/add.png" style = "width:25px;height:25px;" > เพิ่มตัวเลือก </a>'
+                            + '</div>                           </div>'
+                            + '<div class = "col-lg-12" style = "height: 10px; " > </div>'
+                            + '<div class = "col-lg-12" >'
+                            + '<label for = "email" id = "a1" > เฉลย : </label>'
+                            + '<input type = "text" class = "form-control" id = "bbbb" placeholder = "(พิมพ์รายละเอียดเฉลยตรงนี้)" > '
+                            + '<img src = "img/icon/add_image.png" style = "height: 25px; width: 25px; cursor: pointer;" onclick = "document.getElementById("imgInp' + now + 'b").click();" / >'
+                            + '</div><br>'
+                            + '<input type = "file" id = "imgInp' + now + 'b" style = "display:none;"/ >'
+                            + '<div class = "col-lg-12" style = "height: 10px; " > </div>'
+                            + '<center >'
+                            + '<button class = "btn btn-block" id = "showb" data - toggle = "collapse" data - target = "#blah' + now + 'b" style = "display:none;" > แสดงรูปภาพ < /button>'
+                            + '<img id = "blah1b" class = "collapse" src = "#" alt = "your image" style = "display:none;"/>'
+                            + '</center>'
+                            + '<div class = "col-lg-12" style = "height: 10px; " > </div>'
+                            + '</div>'
+                            + '</div><div class="row" id="space" style="height: 10px;"></div>';
+                }
+                function readURL(input) {
+
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#blah1').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                function readURLb(input) {
+
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#blah1b').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $("#imgInp1").change(function () {
+                    readURL(this);
+                    document.getElementById("blah1").removeAttribute("style");
+                    document.getElementById("show").removeAttribute("style");
+                    document.getElementById("blah1").setAttribute("style", "max-width: 525px;");
+                    document.getElementById("show").setAttribute("style", "max-width: 525px;");
+                });
+                $("#imgInp1b").change(function () {
+                    readURLb(this);
+                    document.getElementById("blah1b").removeAttribute("style");
+                    document.getElementById("showb").removeAttribute("style");
+                    document.getElementById("blah1b").setAttribute("style", "max-width: 525px;");
+                    document.getElementById("showb").setAttribute("style", "max-width: 525px;");
+                });
+                function save() {
+                    swal({
+                        title: "คุณต้องการบันทึกข้อสอบ?",
+                        text: document.getElementById('t1').value,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "ใช่",
+                        cancelButtonText: "ไม่",
+                        closeOnConfirm: false,
+                    },
+                            function () {
+                                swal({
+                                    title: "อัพโหลดสำเร็จ",
+                                    text: document.getElementById('t1').value,
+                                    type: "success"
+                                }, function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location = 'listquiz.html';
+                                    } 
+                                }
+                                );
+                                
+                            });
+                }
+            </script>
+        </div>
+
     </body>
+
 </html>
